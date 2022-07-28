@@ -1,0 +1,108 @@
+{
+  "name": "coffeapp",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "preinstall": "node tools/forceYarn.js",
+    "postinstall": "node tools/init.js && node tools/postinstallFixes.js",
+    "ts": "tsc -p .",
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "start-reset-cache": "node node_modules/react-native/local-cli/cli.js start -- --reset-cache",
+    "android:run": "node node_modules/react-native/local-cli/cli.js run-android --no-packager",
+    "android:run+start": "node node_modules/react-native/local-cli/cli.js run-android --no-packager && node node_modules/react-native/local-cli/cli.js start",
+    "android:build-release-apk": "(cd android/ && gradlew assembleRelease)",
+    "android:clean": "(cd android/ && gradlew clean)",
+    "android:bundle": "node node_modules/react-native/local-cli/cli.js bundle --platform android --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --sourcemap-output android/app/src/main/assets/index.android.map --assets-dest android/app/src/main/res/ --dev false --sourcemap-sources-root=build",
+    "ios:run": "node node_modules/react-native/local-cli/cli.js run-ios --no-packager",
+    "check-dependencies-updates": "yarn outdated",
+    "tests": "jest",
+    "tests:watch": "jest --watchAll",
+    "lint": "tslint --project tsconfig.json",
+    "config-setup": "node tools/config-setup.js",
+    "ResourcesGenerator": "generator --dir=resources/images --out=src/common/ImageResources.g.ts"
+  },
+  "dependencies": {
+    "@react-native-community/async-storage": "^1.12.1",
+    "bugsnag-react-native": "^2.23.10",
+    "intl": "^1.2.5",
+    "jwt-decode": "^3.1.2",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
+    "react": "18.0.0",
+    "react-native": "0.69.3",
+    "react-native-gesture-handler": "^2.5.0",
+    "react-native-localization": "^2.3.1",
+    "react-native-modal": "^13.0.1",
+    "react-native-reanimated": "^2.9.1",
+    "react-native-safe-area-context": "^4.3.1",
+    "react-native-screens": "^3.15.0",
+    "react-native-simple-toast": "^1.1.4",
+    "react-navigation": "^4.4.4",
+    "react-navigation-redux-helpers": "^4.0.1",
+    "react-navigation-stack": "^2.10.4",
+    "react-redux": "^8.0.2",
+    "redux": "^4.2.0",
+    "redux-logger": "^3.0.6",
+    "redux-persist": "^6.0.0",
+    "redux-promise": "^0.6.0",
+    "redux-stack": "^1.0.1",
+    "redux-thunk": "^2.4.1",
+    "reflect-metadata": "^0.1.13",
+    "rn-fetch-blob": "^0.12.0",
+    "smart-plurals": "^1.1.0",
+    "typescript-fsa": "^3.0.0",
+    "typescript-fsa-reducers": "^1.2.2",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/plugin-proposal-decorators": "^7.18.9",
+    "@babel/runtime": "^7.12.5",
+    "@react-native-community/eslint-config": "^2.0.0",
+    "@tsconfig/react-native": "^2.0.2",
+    "@types/jest": "^26.0.23",
+    "@types/lodash": "^4.14.182",
+    "@types/react": "^18.0.15",
+    "@types/react-native": "^0.69.3",
+    "@types/react-native-fetch-blob": "^0.10.7",
+    "@types/react-redux": "^7.1.24",
+    "@types/react-test-renderer": "^18.0.0",
+    "@types/redux-logger": "^3.0.9",
+    "@types/redux-promise": "^0.5.29",
+    "@typescript-eslint/eslint-plugin": "^5.29.0",
+    "@typescript-eslint/parser": "^5.29.0",
+    "babel-jest": "^26.6.3",
+    "eslint": "^7.32.0",
+    "image-resource-generator": "git+http://git.dextechnology.com/rn-components/image-resource-generator.git#master",
+    "jest": "^26.6.3",
+    "metro-react-native-babel-preset": "^0.70.3",
+    "react-native-dev-menu": "^4.1.0",
+    "react-test-renderer": "18.0.0",
+    "ts-jest": "^28.0.7",
+    "tslint": "^6.1.3",
+    "tslint-react": "^5.0.0",
+    "typescript": "^4.4.4",
+    "write-json-file": "^5.0.0"
+  },
+  "jest": {
+    "preset": "react-native",
+    "testPathIgnorePatterns": [
+      "node_modules"
+    ],
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js",
+      "\\.(ts|tsx)$": "ts-jest"
+    },
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "tsconfig.jest.json"
+      }
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$"
+  }
+}
