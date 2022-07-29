@@ -1,0 +1,17 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "resources/fonts/Lobster-Regular.ttf",
+      "sha1": "42c276b0639e40f529755313253e14a6e5d3fe6a"
+    },
+    {
+      "path": "resources/fonts/Roboto-Regular.ttf",
+      "sha1": "0c3e35cbff190adb472f077e0259cf9af73ad430"
+    },
+    {
+      "path": "resources/fonts/SF-Pro-Text-Regular.otf",
+      "sha1": "96cceac7272aad51dde0cd50c1fac2a7a55d264f"
+    }
+  ]
+}

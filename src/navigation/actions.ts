@@ -19,6 +19,7 @@ export class Actions {
     toTab(tab: string): NavigationAction {
         return simpleToRoute(tab)();
     }
+    navigateToRegistrarion = simpleToRoute(NavigationPages.registration);
 
     navigateToPlayground = simpleToRoute(NavigationPages.playground);
 

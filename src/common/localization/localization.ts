@@ -5,6 +5,7 @@ import {pagesLocalization} from "./pagesLocalization";
 import {emptyLocalization} from "./emptyLocalization";
 import {errorsLocalization} from "./errorsLocalization";
 import {DateHelper} from "../helpers/DateHelper";
+import { loginLocalozation } from "./loginLocalization";
 
 class Localization {
     common = new LocalizedStrings(commonLocalization);
@@ -12,6 +13,7 @@ class Localization {
     pages = new LocalizedStrings(pagesLocalization);
     empty = new LocalizedStrings(emptyLocalization);
     errors = new LocalizedStrings(errorsLocalization);
+    login = new LocalizedStrings(loginLocalozation);
 
     getLanguage(): string {
         return this.common.getLanguage();

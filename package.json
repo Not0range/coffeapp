@@ -19,7 +19,8 @@
     "tests:watch": "jest --watchAll",
     "lint": "tslint --project tsconfig.json",
     "config-setup": "node tools/config-setup.js",
-    "ResourcesGenerator": "generator --dir=resources/images --out=src/common/ImageResources.g.ts"
+    "ResourcesGenerator": "generator --dir=resources/images --out=src/common/ImageResources.g.ts",
+    "assets": "npx react-native-asset"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.12.1",
