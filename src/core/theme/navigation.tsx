@@ -9,13 +9,13 @@ import {eventRegister} from "../../common/eventRegister";
 import {NavigationStackOptions} from "react-navigation-stack";
 
 export const NoHeaderNavigation: NavigationStackOptions = {
-    header: null,
+    header: undefined,
 };
 
-export function mainHeaderNavigation(mode: "back", right: "none" | "event", eventName?: string):
+export function mainHeaderNavigation(mode: "back" | "menu", right: "none" | "event", eventName?: string):
     NavigationStackOptions {
-    const rightImage = ImageResources.image_back;
-    const rightAction = NavigationActions.navigateToBack;
+    const rightImage = mode == "menu" ? ImageResources.image_menu : ImageResources.image_back;
+    const rightAction = mode == "menu" ? NavigationActions.toggleDrawer : NavigationActions.navigateToBack;
     const eventClick = (): void => eventRegister.emitEvent(eventName!);
 
     let rightNode: JSX.Element;
@@ -32,12 +32,12 @@ export function mainHeaderNavigation(mode: "back", right: "none" | "event", even
     return {
         header: (props: any): any => <HeaderWrapper {...props}/>,
         headerLeft: (): JSX.Element => <HeaderButton image={rightImage} action={rightAction}/>,
-        headerRight: rightNode,
+        headerRight: (): JSX.Element => rightNode,
         headerTitle: "",
         headerStyle: {
             borderBottomWidth: 0,
             elevation: 0,
-            backgroundColor: Colors.transparent,
+            backgroundColor: Colors.white,
         },
     };
 }

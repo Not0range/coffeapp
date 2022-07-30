@@ -4,4 +4,9 @@ export class Pages {
 
     playground = "playground";
     inDevelopment = "inDevelopment";
+
+    menu = "menu";
+    main = "main";
+    
+    cafes = "cafes";
 }

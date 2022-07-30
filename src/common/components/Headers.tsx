@@ -1,42 +1,31 @@
 import {CommonHeaderStyles} from "../../core/theme/commonStyles";
 import React from "react";
-import {HeaderButton} from "../../navigation/components";
+import {HeaderButton} from "../../navigation/components/HeaderButton";
 import {ImageResources} from "../ImageResources.g";
 import {NavigationActions} from "../../navigation/navigation";
-import {ImageURISource, View, ViewStyle} from "react-native";
-import {isIos} from "../../core/theme";
-import {NavigationStackOptions} from "react-navigation-stack";
+import {View} from "react-native";
+import { StackNavigationOptions } from "react-navigation-stack/lib/typescript/src/vendor/types";
 
-export function NoHeader(): NavigationStackOptions {
+export function NoHeader(): StackNavigationOptions | null {
     return ({
-        header: null,
+        header: (props) => <React.Fragment/>
     });
 }
 
-export function PlainHeader(params: {
-    title: string;
-    showBackButton?: boolean;
-    headerStyle?: ViewStyle;
-    backIcon?: ImageURISource;
-    backAction?: () => any;
-}): NavigationStackOptions {
-    const {title, showBackButton = true, backAction, backIcon = ImageResources.image_back, headerStyle} = params;
-
+export function PlainHeader(title: string, showLeftButton?: boolean, showDrawerIcon?: boolean):
+    StackNavigationOptions {
     return ({
         headerTitle: title,
-        headerTitleStyle: CommonHeaderStyles.headerTitleStyle,
-        headerLeft: (): JSX.Element | null => showBackButton
-            ? (
-                <HeaderButton
-                    image={backIcon}
-                    action={backAction || NavigationActions.navigateToBack}
-                    noTintColor={true}
-                />
-            )
-            : isIos ? <View/> : null,
-        headerRight: null,
-        headerBackTitle: null,
-        headerStyle: headerStyle != null ? headerStyle : CommonHeaderStyles.headerStyle,
+        headerTitleStyle: CommonHeaderStyles.headerTitleStyle as any,
+        headerLeft: (props) => showLeftButton ? (
+            <HeaderButton
+                image={showDrawerIcon ? ImageResources.image_menu : ImageResources.image_back}
+                action={showDrawerIcon ? NavigationActions.toggleDrawer : NavigationActions.navigateToBack}
+            />
+        ) : undefined,
+        headerRight: (props) => <View/>,
+        headerBackTitle: undefined,
+        headerStyle: CommonHeaderStyles.headerStyle as any,
         headerTitleAllowFontScaling: false,
     });
 }

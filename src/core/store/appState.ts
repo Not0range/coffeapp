@@ -1,4 +1,4 @@
-import {NavigationState} from "react-navigation";
+import {DrawerNavigationState, NavigationState} from "react-navigation";
 import {EntitiesInitialState, IEntitiesState} from "../../modules/entities/entitiesState";
 import {ISystemState, SystemInitialState} from "./systemState";
 import {NavigationConfig} from "../../navigation/config";
@@ -11,6 +11,8 @@ export interface IAppState {
 
 export interface INavigationState {
     root: NavigationState;
+    menu: DrawerNavigationState;
+    cafes: NavigationState;
 }
 
 export function getAppInitialState(): IAppState {

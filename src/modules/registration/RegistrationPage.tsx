@@ -9,13 +9,14 @@ import { IAppState } from "../../core/store/appState";
 import { localization } from "../../common/localization/localization";
 import { Logo } from "../../common/components/Logo";
 import { BorderedImage } from "../../common/components/BorderedImage";
+import { NavigationActions } from "../../navigation/navigation";
 
 interface IStateProps {
 
 }
 
 interface IDispatchProps {
-
+    continue: () => void;
 }
 
 interface IState {
@@ -24,7 +25,9 @@ interface IState {
 
 @connectAdv(
     (state: IAppState): IStateProps => ({}),
-    (dispatch: Dispatch<any>): IDispatchProps => ({})
+    (dispatch: Dispatch<any>): IDispatchProps => ({
+        continue: (): any => dispatch(NavigationActions.navigateToMenu())
+    })
 )
 export class RegistrationPage extends BaseReduxComponent<IStateProps, IDispatchProps, IState> {
     constructor(props: IEmpty) {
@@ -60,8 +63,8 @@ export class RegistrationPage extends BaseReduxComponent<IStateProps, IDispatchP
         )
     }
 
-    private continue(): void {
-        //todo go to menu
+    private continue = (): void => {
+        this.dispatchProps.continue();
     }
 }
 

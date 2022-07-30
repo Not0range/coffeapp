@@ -3,12 +3,13 @@ import {extendWithDontPushTwoPageInStack} from "../extendWithDontPushTwoPageInSt
 import {NavigationPages} from "../navigation";
 import {InDeveloping} from "../../common/components/InDeveloping";
 import { createStackNavigator } from "react-navigation-stack";
-import { NavigationAction, NavigationActions, NavigationContainer, NavigationState, StackActions } from "react-navigation";
+import { NavigationAction, NavigationActions, NavigationComponent, NavigationContainer, NavigationState, StackActions } from "react-navigation";
 import { LoginPage } from "../../modules/login/LoginPage";
 import { CoreActions } from "../../core/store";
 import { IAppState } from "../../core/store/appState";
 import { RegistrationPage } from "../../modules/registration/RegistrationPage";
 import { LoginActions } from "../../modules/login/loginAction";
+import { NavigationConfig } from "../config/NavigationConfig";
 
 export const RootNavigator = createStackNavigator({
     [NavigationPages.login]: {screen: LoginPage},
@@ -16,6 +17,10 @@ export const RootNavigator = createStackNavigator({
 
     [NavigationPages.playground]: {screen: Playground},
     [NavigationPages.inDevelopment]: {screen: InDeveloping},
+    
+    [NavigationPages.menu]: {
+        getScreen: (): NavigationComponent<any, any> => NavigationConfig.instance.getNavigationComponent("menu")
+    },
 }, {
     headerMode: "none"
 }) as NavigationContainer;

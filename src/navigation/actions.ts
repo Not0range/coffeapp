@@ -1,8 +1,9 @@
-import {NavigationAction, NavigationActions} from "react-navigation";
+import {NavigationAction, NavigationActions, NavigationCloseDrawerAction, NavigationToggleDrawerAction} from "react-navigation";
 import {SimpleThunk} from "../common/simpleThunk";
 import {actionCreator} from "../core/store";
 import {getBackAction} from "./navigation";
 import {Pages} from "./pages";
+import {DrawerActions} from 'react-navigation-drawer'
 
 const NavigationPages = new Pages();
 
@@ -15,11 +16,24 @@ function routeWithParams<T>(routeName: string): (params: T) => NavigationAction 
     return (params: T): NavigationAction => NavigationActions.navigate({routeName, params});
 }
 
+function toggleDrawer(): () => NavigationToggleDrawerAction {
+    return (): NavigationToggleDrawerAction => DrawerActions.toggleDrawer();
+}
+
+function closeMenu(): () => NavigationCloseDrawerAction {
+    return (): NavigationCloseDrawerAction => DrawerActions.closeDrawer();
+}
+
 export class Actions {
+    toggleDrawer = toggleDrawer();
+    closeMenu = closeMenu();
+
     toTab(tab: string): NavigationAction {
         return simpleToRoute(tab)();
     }
-    navigateToRegistrarion = simpleToRoute(NavigationPages.registration);
+    navigateToMenu = simpleToRoute(NavigationPages.menu);
+    navigateToCafes = simpleToRoute(NavigationPages.cafes);
+    //navigateToDrinks = simpleToRoute(NavigationPages.menu);
 
     navigateToPlayground = simpleToRoute(NavigationPages.playground);
 
